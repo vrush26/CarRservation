@@ -1,17 +1,10 @@
 package test;
 
 import org.example.*;
-
-
-import org.junit.jupiter.api.Assertions;
-
 import org.junit.jupiter.api.BeforeEach;
 import org.junit.jupiter.api.Test;
 
-
 import java.time.LocalDate;
-import java.time.LocalDateTime;
-
 
 import static org.junit.jupiter.api.Assertions.*;
 
@@ -34,31 +27,31 @@ public class CarReservationTest {
 
     @Test
     public void testSuccessfulReservation() throws Exception {
-        CarReservation res = system.reserveCar(2,"Sedan", today.atStartOfDay());
+        CarReservation res = system.reserveCar(2, "Sedan", today.atStartOfDay());
         assertEquals("Sedan", res.getCar());
     }
 
     @Test
     public void testReservationConflict() throws Exception {
-        system.reserveCar(3,"Van", today.atStartOfDay());
+        system.reserveCar(3, "Van", today.atStartOfDay());
         Exception exception = assertThrows(Exception.class, () -> {
-            system.reserveCar(2,"Van", today.plusDays(1).atStartOfDay());
+            system.reserveCar(2, "Van", today.plusDays(1).atStartOfDay());
         });
         assertTrue(exception.getMessage().contains("No available Van"));
     }
 
     @Test
     public void testMultipleReservations() throws Exception {
-        CarReservation res1 = system.reserveCar(1,"Sedan", today.atStartOfDay());
-        CarReservation res2 = system.reserveCar(1,"Sedan", today.atStartOfDay());
+        CarReservation res1 = system.reserveCar(1, "Sedan", today.atStartOfDay());
+        CarReservation res2 = system.reserveCar(1, "Sedan", today.atStartOfDay());
 
     }
 
     @Test
     public void testReservationWhenNoneAvailable() throws Exception {
-        system.reserveCar(2,"SUV", today.atStartOfDay());
+        system.reserveCar(2, "SUV", today.atStartOfDay());
         Exception ex = assertThrows(Exception.class, () -> {
-            system.reserveCar(2,"SUV", today.atStartOfDay());
+            system.reserveCar(2, "SUV", today.atStartOfDay());
         });
         assertTrue(ex.getMessage().contains("No available SUV"));
     }

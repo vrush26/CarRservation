@@ -1,7 +1,6 @@
 package org.example;
 
 import java.time.LocalDateTime;
-import java.util.Date;
 
 public class CarReservation {
     private int days;
@@ -15,11 +14,13 @@ public class CarReservation {
         this.durationStartDate = durationStartDate;
         this.durationEndDate = durationStartDate.plusDays(days);
     }
+
     public boolean isOverLap(LocalDateTime startDate, LocalDateTime resrvationEndDate) {
 
         return !(durationEndDate.isBefore(startDate) || startDate.isAfter(resrvationEndDate));
 
     }
+
     public LocalDateTime getDurationEndDate() {
         return durationEndDate;
     }

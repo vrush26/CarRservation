@@ -2,7 +2,6 @@ package org.example;
 
 import java.time.LocalDateTime;
 import java.util.ArrayList;
-import java.util.Date;
 import java.util.LinkedList;
 import java.util.List;
 
@@ -11,6 +10,7 @@ public class CarRentalSystem {
     private List<Car> cars = new LinkedList<>();
     private List<CarReservation> reservations = new ArrayList<>();
     LocalDateTime reservationEndDate;
+
     public void addCar(Car car) {
         cars.add(car);
     }
